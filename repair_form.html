@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2> Crear Nuevaaaaaaaaaa Reparación</h2>
+  <form method="post" class="custom-form">
+    {% csrf_token %}
+    {% if form.errors %}
+  <div class="alert alert-danger" role="alert" style="margin-bottom: 20px;">
+    </strong> ¡Stock insuficiente!
+  </div>
+  {% endif %}
+  {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+{% endblock %}

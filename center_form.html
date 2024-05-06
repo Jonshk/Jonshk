@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <form method="post" class="custom-form">
+    <div class="text-center mb-4">
+      <h2 class="form-title" style="font-size: 1.5rem; font-weight: lighter;">Crear Nuevo Centro</h2>
+    </div>
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="id_center" class="form-label">Centro:</label>
+      <input type="text" class="form-control" id="id_center" name="center" required>
+    </div>
+    <div class="mb-3">
+      <label for="id_phonenumber" class="form-label">Número de teléfono:</label>
+      <input type="text" class="form-control" id="id_phonenumber" name="phonenumber" required>
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary" style="font-size: 0.875rem;">Guardar</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Detalle del Producto</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>ID:</strong> {{ stock.id }}</li>
+        <li class="list-group-item"><strong>Nombre:</strong> {{ stock.product_name }}</li>
+        <li class="list-group-item"><strong>Cantidad:</strong> {{ stock.quantity }}</li>
+        <li class="list-group-item"><strong>Nivel de stock mínimo:</strong> {{ stock.min_stock_level }}</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <a href="{% url 'stock_update' stock.pk %}" class="btn btn-warning">Editar</a>
+      <form action="{% url 'stock_delete' stock.pk %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+      </form>
+      <a href="{% url 'stock_list' %}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Volver</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

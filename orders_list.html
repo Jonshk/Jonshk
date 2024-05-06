@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Lista de Órdenes</h2>
+  <a href="{% url 'order_create' %}" class="btn btn-primary">Agregar Orden</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Centro</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Empresa de envío</th>
+        <th>Fecha de orden</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+        <tr>
+          <td>{{ order.id }}</td>
+          <td>{{ order.center }}</td>
+          <td>{{ order.product }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.shipping_company }}</td>
+          <td>{{ order.order_date }}</td>
+          <td>
+            <a href="{% url 'order_detail' order.pk %}" class="btn btn-info">Ver</a>
+            <a href="{% url 'order_update' order.pk %}" class="btn btn-warning">Editar</a>
+            <form action="{% url 'order_delete' order.pk %}" method="post" style="display: inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

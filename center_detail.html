@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Detalle del Centro</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>ID:</strong> {{ center.id }}</li>
+        <li class="list-group-item"><strong>Centro:</strong> {{ center.center }}</li>
+        <li class="list-group-item"><strong>Número de teléfono:</strong> {{ center.phonenumber }}</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <a href="{% url 'center_update' center.pk %}" class="btn btn-warning">Editar</a>
+      <form action="{% url 'center_delete' center.pk %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+      </form>
+      <a href="{% url 'center_list' %}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Volver</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card mb-4">
+          <div class="card-header">
+            <i class="fas fa-chart-area mr-1"></i>
+            Numero de envios por centro
+          </div>
+          <div class="card-body">
+            <canvas id="myAreaChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card mb-4">
+          <div class="card-header">
+            <i class="fas fa-chart-bar mr-1"></i>
+            Numero de reparaciones por centro
+          </div>
+          <div class="card-body">
+            <canvas id="myBarChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Obtener los datos para los gráficos
+    const centersWithShipments = {{ centers_with_shipments_json|safe }};
+    const centersWithRepairs = {{ centers_with_repairs_json|safe }};
+  
+    // Procesar datos de envíos por centro
+    const shipmentsData = centersWithShipments.map(center => {
+      return {
+        label: center.center,
+        data: [center.num_shipments],
+        backgroundColor: 'rgba(105, 89, 205, 0.2)',
+        borderColor: 'rgba(105, 89, 205, 1)',
+        borderWidth: 1
+      };
+    });
+  
+    // Procesar datos de reparaciones por centro
+    const repairsData = centersWithRepairs.map(center => {
+      return {
+        label: center.center,
+        data: [center.num_repairs],
+        backgroundColor: 'rgba(205, 105, 89, 0.2)',
+        borderColor: 'rgba(205, 105, 89, 1)',
+        borderWidth: 1
+      };
+    });
+  
+    // Crear el gráfico de área para envíos por centro
+    const areaChartCtx = document.getElementById('myAreaChart').getContext('2d');
+    const areaChart = new Chart(areaChartCtx, {
+      type: 'line',
+      data: {
+        labels: shipmentsData.map(data => data.label),
+        datasets: shipmentsData
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  
+    // Crear el gráfico de barras para reparaciones por centro
+    const barChartCtx = document.getElementById('myBarChart').getContext('2d');
+    const barChart = new Chart(barChartCtx, {
+      type: 'bar',
+      data: {
+        labels: repairsData.map(data => data.label),
+        datasets: repairsData
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  
+{% endblock %}

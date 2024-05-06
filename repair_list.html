@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4 custom-title" style="font-size: 1.25rem;">Reparaciones</h1>
+    <ol class="breadcrumb mb-4">
+        
+    </ol>
+
+    <!-- Tabla de reparaciones -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-wrench me-1"></i>
+            Reparaciones
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center small">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Centro</th>
+                            <th>Fecha de reparación</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Iterar sobre los datos de las reparaciones y mostrar en la tabla -->
+                        {% for repair in repairs %}
+                        <tr>
+                            <td>{{ repair.id }}</td>
+                            <td>{{ repair.product }}</td>
+                            <td>{{ repair.center }}</td>
+                            <td>{{ repair.repair_date }}</td>
+                            <td>{{ repair.quantity }}</td>
+                            <td>
+                                <a href="{% url 'repair_detail' repair.pk %}" class="btn btn-info btn-sm">Ver</a>
+                                <a href="{% url 'repair_update' repair.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                                <form action="{% url 'repair_delete' repair.pk %}" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Fin de la tabla de reparaciones -->
+
+    <!-- Botón de agregar debajo de la tabla -->
+    <div class="mb-4">
+        <a href="{% url 'repair_create' %}" class="btn btn-primary">Agregar</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+/* Estilos para todos los formularios */
+.custom-form {
+  font-size: 14px; /* Tamaño de letra por defecto */
+  max-width: 400px; /* Ancho máximo del formulario */
+  margin: 30px auto 50px auto; /* Margen superior e inferior 50px */
+  padding: 20px; /* Espacio interior */
+  border: 1px solid #ccc; /* Borde del formulario */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+/* Estilos para los campos de entrada */
+.custom-form input[type="text"],
+.custom-form input[type="number"],
+.custom-form select {
+  width: calc(100% - 10px); /* Ancho de los campos de entrada */
+  padding: 10px; /* Espaciado interno */
+  margin-bottom: 20px; /* Espaciado inferior */
+  border: 1px solid #ccc; /* Borde */
+  border-radius: 4px; /* Bordes redondeados */
+  box-sizing: border-box; /* Incluir padding y borde en el tamaño total */
+}
+
+/* Estilos para los botones */
+.custom-form button {
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 14px; /* Tamaño de letra por defecto para botones */
+  background-color: #007bff; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  border: none; /* Sin borde */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor apuntador */
+  transition: background-color 0.3s; /* Transición suave del color de fondo */
+}
+
+/* Cambio de color al pasar el ratón por encima del botón */
+.custom-form button:hover {
+  background-color: #0056b3; /* Color de fondo oscuro al pasar el ratón */
+}
+
+/* Estilos para el título */
+.custom-form h2 {
+  font-size: 20px; /* Tamaño de letra para el título */
+  font-weight: 600; /* Peso de la letra */
+  margin-bottom: 20px; /* Espaciado inferior */
+  text-align: center; /* Centrar horizontalmente */
+}
+
+/* Estilos para alinear los formularios */
+.align-left {
+  text-align: left; /* Alineación izquierda */
+  margin-right: -100px; /* Mover 100px hacia la derecha */
+}
+
+.align-right {
+  text-align: right; /* Alineación derecha */
+  margin-left: 100px; /* Mover 100px hacia la izquierda */
+}
